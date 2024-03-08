@@ -44,3 +44,4 @@ targetSecretForm.addEventListener("submit", (e) => {
     }
   }
 });
+// Next step this afternoon : managing the click on the symbol "link" to avoid copy and paste
