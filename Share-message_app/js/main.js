@@ -23,25 +23,24 @@ targetSecretForm.addEventListener("submit", (e) => {
     } else {
       if (!encoding64) {
         console.log("Your message hasn't been encoded on base 64");
-      }
-      elseif(messageValue === "");
+      } else if (messageValue === "");
       {
         console.log("You didn't write any message");
       }
     }
-  }
-  // Get the user input
-  console.log("The secret form has been sent");
-  targetSecretForm.style.display = "none";
-  displaySecretMessage.style.display = "none";
-  targetSecretLink.style.display = "block";
-  // Hash my URL
-  try {
-    const url = new URL("../test", "https://mondomaine.com");
-    url.hash = `${encoding64}`;
-    console.log(url.href);
-    linkToSecret.value = url.href;
-  } catch (error) {
-    console.log("Invalid URL");
+    // Get the user input
+    console.log("The secret form has been sent");
+    targetSecretForm.style.display = "none";
+    displaySecretMessage.style.display = "none";
+    targetSecretLink.style.display = "block";
+    // Hash my URL
+    try {
+      const url = new URL("https://mondomaine.com");
+      url.hash = encoding64;
+      linkToSecret.value = url.href;
+      console.log(url.href);
+    } catch (error) {
+      console.error("Error creating URL: ", error.message);
+    }
   }
 });
