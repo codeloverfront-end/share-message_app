@@ -4,6 +4,8 @@ const linkToSecret = document.querySelector("#link");
 const displaySecretMessage = document.querySelector(".secret");
 const targetSecretForm = document.querySelector("#SM");
 const targetSecretLink = document.querySelector("#LS");
+const targetFontLink = document.querySelector(".fa-link");
+
 // // Making sure that only the first form is displayed
 
 targetSecretLink.style.display = "none";
@@ -37,11 +39,26 @@ targetSecretForm.addEventListener("submit", (e) => {
     try {
       const url = new URL("https://mondomaine.com");
       url.hash = encoding64;
-      linkToSecret.value = url.href;
+      secretMessage.value = url.href;
       console.log(url.href);
+      linkToSecret.value = url;
+      // if clicking on the link
+      targetFontLink.addEventListener("click", () => {
+        navigator.clipboard.writeText(linkToSecret);
+        try {
+          console.log("The link has been registered properly to the clipboard");
+          alert("Your link has been well copied to the clipboard");
+        } catch (error) {
+          console.error("Error copying link to clipboard:", error);
+          alert(
+            "There has been a mistake on copying the link to clipboard, please try again"
+          );
+        }
+      });
     } catch (error) {
       console.error("Error creating URL: ", error.message);
     }
   }
 });
-// Next step this afternoon : managing the click on the symbol "link" to avoid copy and paste
+// Next step : managing the click on the symbol "link" to avoid copy and paste : done
+// Next step : figuring out to access at the secret message
